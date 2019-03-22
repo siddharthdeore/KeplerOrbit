@@ -10,11 +10,8 @@ var apo_x,apo_y,apo_z;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight,WEBGL);
-	//createCanvas(windowWidth, windowHeight);
-
 	stroke(0);
 	background(0);
-	//line(windowWidth/2,0,windowWidth/2,windowHeight);
 	smooth();
 	update();
 }
@@ -22,9 +19,6 @@ function draw() {
 
 	render();
 
-	//for (var i = plist.length - 1; i >= 0; i--) {
-		//plist[frameCount%200].show();
-	//}
 
 }
 function render() {
@@ -52,7 +46,6 @@ function render() {
 
 		if(dist(x,y,z,prev_x,prev_y,prev_z)<a/2)
 			line(x,y,z,prev_x,prev_y,prev_z);
-		strokeWeight(1);
 
 		prev_x=x;
 		prev_y=y;
@@ -129,14 +122,8 @@ function getKeplerOrbit(a,e,i,RA,omega) {
 		max = Math.PI/3;
 		f = 2*a-a*e;
 	}
-	// text("a="+a,10,20);
-	// text("e="+e,10,30);
-	// text("i="+inc,10,40);
-	// text("RA="+RA,10,50);
-	// text("omega="+omega,10,60);
-	// text("M0="+M0,10,70);
 
-	N=200;
+	N=100;
 	[peri_x,peri_y,peri_z] =getECI(e,p,0,omega,RA,inc);
 
 	plist=[];
@@ -146,7 +133,6 @@ function getKeplerOrbit(a,e,i,RA,omega) {
 		// 3d plot
 		[x,y,z]=getECI(e,p,t,omega,RA,inc);
 		// orbit
-
 		plist.push(new Particle(x,y,z));
 
 	}
@@ -154,7 +140,6 @@ function getKeplerOrbit(a,e,i,RA,omega) {
 	[apo_x,apo_y,apo_z] = getECI(e,p,Math.PI,omega,RA,inc);
 	[E,t]=invKepler(M0,e);
 	[sat_x,sat_y,sat_z] = getECI(e,p,t,omega,RA,inc);
-	//line(peri_x,peri_y,peri_z,apo_x,apo_y,apo_z)
 
 
 
